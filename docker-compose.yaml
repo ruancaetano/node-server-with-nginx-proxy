@@ -11,19 +11,20 @@ services:
     networks: 
       - node-network
     depends_on:
-      - node_app_server
+      - server
 
   server:
     build: 
       context: app
     container_name: node_app_server
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 30s node index.js
     networks: 
       - node-network
     tty: true
     ports:
       - 3000
     depends_on: 
-       - node_app_db
+       - db
 
   db:
     image: mysql:5.7

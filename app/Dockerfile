@@ -18,4 +18,5 @@ RUN apt-get update \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-ENTRYPOINT [ "dockerize", "-wait", "tcp://db:3306", "-timeout", "30s", "node", "index.js"]
+
+CMD ["node", "index.js"]
